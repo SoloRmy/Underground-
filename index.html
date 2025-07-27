@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827" />
+  <link rel="manifest" href="manifest.json" />
+  <title>BLACKOUT Sub Generator</title>
+  <style>
+    body { font-family: sans-serif; background-color: #111827; color: #e5e7eb; padding: 1rem; }
+    button { padding: 0.75rem; background-color: #2563eb; color: white; }
+  </style>
+</head>
+<body>
+  <h1>BLACKOUT Sub Generator</h1>
+  <input type="text" id="subs" placeholder="Enter subscription link" />
+  <button onclick="generate()">Generate</button>
+  <textarea id="output" readonly placeholder="Generated link will appear here"></textarea>
+
+  <script>
+    async function generate() {
+      const subs = document.getElementById('subs').value
+      const res = await fetch(`/api?subs=${subs}&format=clash`)
+      const text = await res.text()
+      document.getElementById('output').value = text
+    }
+  </script>
+</body>
+</html>
